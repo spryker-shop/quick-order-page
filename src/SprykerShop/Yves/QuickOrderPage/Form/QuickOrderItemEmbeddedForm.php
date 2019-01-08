@@ -9,23 +9,19 @@ namespace SprykerShop\Yves\QuickOrderPage\Form;
 
 use Generated\Shared\Transfer\QuickOrderItemTransfer;
 use Spryker\Yves\Kernel\Form\AbstractType;
-use SprykerShop\Yves\QuickOrderPage\Form\Constraint\QtyFieldConstraint;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method \SprykerShop\Yves\QuickOrderPage\QuickOrderPageFactory getFactory()
  * @method \SprykerShop\Yves\QuickOrderPage\QuickOrderPageConfig getConfig()
  */
-class OrderItemEmbeddedForm extends AbstractType
+class QuickOrderItemEmbeddedForm extends AbstractType
 {
     public const FIELD_SKU = 'sku';
-    public const FIELD_SKU_LABEL = 'quick-order.input-label.sku';
-    public const FIELD_QTY = 'qty';
-    public const FIELD_QTY_LABEL = 'quick-order.input-label.qty';
+    public const FIELD_QUANTITY = 'quantity';
 
     /**
      * @param \Symfony\Component\Form\FormBuilderInterface $builder
@@ -37,7 +33,7 @@ class OrderItemEmbeddedForm extends AbstractType
     {
         $this
             ->addSku($builder)
-            ->addQty($builder);
+            ->addQuantity($builder);
     }
 
     /**
@@ -50,7 +46,7 @@ class OrderItemEmbeddedForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => QuickOrderItemTransfer::class,
             'constraints' => [
-                new QtyFieldConstraint(),
+                $this->getFactory()->createQtyFieldConstraint(),
             ],
         ]);
     }
@@ -60,13 +56,17 @@ class OrderItemEmbeddedForm extends AbstractType
      *
      * @return $this
      */
-    protected function addSku(FormBuilderInterface $builder): FormTypeInterface
+    protected function addSku(FormBuilderInterface $builder)
     {
         $builder
-            ->add(static::FIELD_SKU, TextType::class, [
-                'required' => false,
-                'label' => static::FIELD_SKU_LABEL,
-            ]);
+            ->add(
+                static::FIELD_SKU,
+                HiddenType::class,
+                [
+                    'required' => false,
+                    'label' => false,
+                ]
+            );
 
         return $this;
     }
@@ -76,13 +76,17 @@ class OrderItemEmbeddedForm extends AbstractType
      *
      * @return $this
      */
-    protected function addQty(FormBuilderInterface $builder): FormTypeInterface
+    protected function addQuantity(FormBuilderInterface $builder)
     {
-        $builder->add(static::FIELD_QTY, IntegerType::class, [
-            'required' => false,
-            'label' => static::FIELD_QTY_LABEL,
-            'attr' => ['min' => 1],
-        ]);
+        $builder->add(
+            static::FIELD_QUANTITY,
+            IntegerType::class,
+            [
+                'required' => false,
+                'label' => false,
+                'attr' => ['min' => 1],
+            ]
+        );
 
         return $this;
     }
