@@ -40,7 +40,7 @@ class TextOrderParser implements TextOrderParserInterface
     {
         $rows = $this->getTextOrderRows($textOrder);
 
-        if (count($rows) < 1) {
+        if (count($rows) === 0) {
             return [];
         }
 
@@ -48,13 +48,12 @@ class TextOrderParser implements TextOrderParserInterface
         $quickOrderItemTransfers = [];
         foreach ($rows as $row) {
             [$sku, $quantity] = explode($separator, trim($row));
-            $quantity = (int)$quantity;
 
-            if (!$sku) {
+            if ($sku === '') {
                 continue;
             }
 
-            $quickOrderItemTransfers = $this->addQuickOrderItemTransfer($quickOrderItemTransfers, $sku, $quantity);
+            $quickOrderItemTransfers = $this->addQuickOrderItemTransfer($quickOrderItemTransfers, $sku, (int)$quantity);
         }
 
         return array_values($quickOrderItemTransfers);
@@ -69,12 +68,14 @@ class TextOrderParser implements TextOrderParserInterface
      */
     protected function addQuickOrderItemTransfer(array $quickOrderItemTransfers, string $sku, int $quantity): array
     {
-        if (!isset($quickOrderItemTransfers[$sku])) {
-            $quickOrderItemTransfers[$sku] = $this->createQuickOrderItemTransfer($sku, 0);
+        $quickOrderItemTransfer = $quickOrderItemTransfers[$sku] ?? null;
+        if ($quickOrderItemTransfer === null) {
+            $quickOrderItemTransfer = $this->createQuickOrderItemTransfer($sku, 0);
+            $quickOrderItemTransfers[$sku] = $quickOrderItemTransfer;
         }
 
-        $quickOrderItemTransfers[$sku]->setQuantity($quantity + $quickOrderItemTransfers[$sku]->getQuantity());
-
+        $quickOrderItemTransfer->setQuantity($quantity + $quickOrderItemTransfer->getQuantity());
+        
         return $quickOrderItemTransfers;
     }
 
@@ -86,11 +87,9 @@ class TextOrderParser implements TextOrderParserInterface
      */
     protected function createQuickOrderItemTransfer(string $sku, int $quantity): QuickOrderItemTransfer
     {
-        $quickOrderItemTransfer = (new QuickOrderItemTransfer())
+        return (new QuickOrderItemTransfer())
             ->setSku($sku)
             ->setQuantity($quantity);
-
-        return $quickOrderItemTransfer;
     }
 
     /**
