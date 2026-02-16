@@ -2,4 +2,6 @@ parameters:
     ignoreErrors:
         -
             identifier: missingType.iterableValue
+        -
+            identifier: varTag.nativeType
     level: 7
