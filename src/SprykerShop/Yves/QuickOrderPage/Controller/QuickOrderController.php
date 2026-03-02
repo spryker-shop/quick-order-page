@@ -235,11 +235,6 @@ class QuickOrderController extends AbstractController
         ];
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderTransfer
-     */
     protected function getQuickOrderTransfer(QuickOrderTransfer $quickOrderTransfer): QuickOrderTransfer
     {
         $quickOrderTransfer = $this->getFactory()
@@ -274,21 +269,11 @@ class QuickOrderController extends AbstractController
         return $filteredItems;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function downloadTemplateAction(Request $request): Response
     {
         return $this->executeDownloadTemplateAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     protected function executeDownloadTemplateAction(Request $request): Response
     {
         return $this->getFactory()
@@ -313,11 +298,6 @@ class QuickOrderController extends AbstractController
         return $productConcreteTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer|null
-     */
     protected function getProductByQuickOrderItem(QuickOrderItemTransfer $quickOrderItemTransfer): ?ProductConcreteTransfer
     {
         if (!$quickOrderItemTransfer->getSku()) {
@@ -355,11 +335,6 @@ class QuickOrderController extends AbstractController
         );
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return array
-     */
     protected function executeAddRowsAction(Request $request): array
     {
         $formData = $request->get(static::PARAM_QUICK_ORDER_FORM);
@@ -550,11 +525,6 @@ class QuickOrderController extends AbstractController
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     protected function addMessageToQuickOrderItemTransfer(QuickOrderItemTransfer $quickOrderItemTransfer): QuickOrderItemTransfer
     {
         return $quickOrderItemTransfer->addMessage(
@@ -635,12 +605,6 @@ class QuickOrderController extends AbstractController
         return $quickOrderItems;
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $quickOrderForm
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
-     */
     protected function processQuickOrderForm(FormInterface $quickOrderForm, Request $request): ?RedirectResponse
     {
         $quickOrderTransfer = $quickOrderForm->getData();
@@ -660,11 +624,6 @@ class QuickOrderController extends AbstractController
         return $this->executeQuickOrderFormHandlerStrategyPlugin($quickOrderForm, $request);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
-     */
     protected function executeAddToCartAction(QuickOrderTransfer $quickOrderTransfer): ?RedirectResponse
     {
         if (!$this->can('AddCartItemPermissionPlugin')) {
@@ -684,11 +643,6 @@ class QuickOrderController extends AbstractController
         return $this->redirectResponseInternal(static::ROUTE_NAME_CART);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
-     */
     protected function executeCreateOrderAction(QuickOrderTransfer $quickOrderTransfer): ?RedirectResponse
     {
         if (!$this->can('AddCartItemPermissionPlugin')) {
@@ -708,12 +662,6 @@ class QuickOrderController extends AbstractController
         return $this->redirectResponseInternal(static::ROUTE_NAME_CHECKOUT_INDEX);
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $quickOrderForm
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|null
-     */
     protected function executeQuickOrderFormHandlerStrategyPlugin(FormInterface $quickOrderForm, Request $request): ?RedirectResponse
     {
         $response = null;
@@ -788,12 +736,6 @@ class QuickOrderController extends AbstractController
         return $this->getFactory()->getCsrfTokenManager()->isTokenValid($csrfToken);
     }
 
-    /**
-     * @param string $tokenId
-     * @param string $value
-     *
-     * @return \Symfony\Component\Security\Csrf\CsrfToken
-     */
     protected function createCsrfToken(string $tokenId, string $value): CsrfToken
     {
         return new CsrfToken($tokenId, $value);

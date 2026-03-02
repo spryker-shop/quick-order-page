@@ -143,11 +143,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const SERVICE_REQUEST_STACK = 'request_stack';
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     public function provideDependencies(Container $container): Container
     {
         $container = $this->addRequestStack($container);
@@ -194,11 +189,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addRequestStack(Container $container): Container
     {
         $container->set(static::SERVICE_REQUEST_STACK, function (ContainerInterface $container) {
@@ -208,11 +198,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderUtilCsvService(Container $container): Container
     {
         $container->set(static::SERVICE_UTIL_CSV, function (Container $container): QuickOrderPageToUtilCsvServiceInterface {
@@ -224,11 +209,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCsrfProviderService(Container $container): Container
     {
         $container->set(static::SERVICE_FORM_CSRF_PROVIDER, function (Container $container) {
@@ -238,11 +218,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addCartClient(Container $container): Container
     {
         $container->set(static::CLIENT_CART, function (Container $container) {
@@ -252,11 +227,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuoteClient(Container $container): Container
     {
         $container->set(static::CLIENT_QUOTE, function (Container $container) {
@@ -266,11 +236,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addProductStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRODUCT_STORAGE, function (Container $container) {
@@ -280,11 +245,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addPriceProductStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRICE_PRODUCT_STORAGE, function (Container $container) {
@@ -294,11 +254,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addProductQuantityStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRODUCT_QUANTITY_STORAGE, function (Container $container) {
@@ -308,11 +263,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderClient(Container $container): Container
     {
         $container->set(static::CLIENT_QUICK_ORDER, function (Container $container) {
@@ -324,11 +274,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderPageWidgetPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_PAGE_WIDGETS, function () {
@@ -338,11 +283,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderItemTransferExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_ITEM_TRANSFER_EXPANDER, function () {
@@ -366,11 +306,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderFormHandlerStrategyPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_FORM_HANDLER_STRATEGY, function () {
@@ -380,11 +315,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderItemFilterPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_ITEM_FILTER, function () {
@@ -394,11 +324,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderFormAdditionalDataColumnProviderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_FORM_COLUMN, function () {
@@ -408,11 +333,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderUploadedFileParserPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_UPLOADED_FILE_PARSER, function (): array {
@@ -422,11 +342,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderUploadedFileValidatorPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_UPLOADED_FILE_VALIDATOR, function (): array {
@@ -436,11 +351,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderFileTemplatePlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_FILE_TEMPLATE, function (): array {
@@ -450,11 +360,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addLocaleClient(Container $container): Container
     {
         $container->set(static::CLIENT_LOCALE, function (Container $container) {
@@ -464,11 +369,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderFormExpanderPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_FORM_EXPANDER, function (): array {
@@ -478,11 +378,6 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Yves\Kernel\Container $container
-     *
-     * @return \Spryker\Yves\Kernel\Container
-     */
     protected function addQuickOrderItemMapperPlugins(Container $container): Container
     {
         $container->set(static::PLUGINS_QUICK_ORDER_ITEM_MAPPER, function (): array {

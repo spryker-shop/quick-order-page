@@ -28,20 +28,11 @@ class UploadedFileCsvTypeValidator implements UploadedFileTypeValidatorInterface
      */
     protected $utilCsvService;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Service\QuickOrderPageToUtilCsvServiceInterface $utilCsvService
-     */
     public function __construct(QuickOrderPageToUtilCsvServiceInterface $utilCsvService)
     {
         $this->utilCsvService = $utilCsvService;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     * @param int $rowCountLimit
-     *
-     * @return bool
-     */
     public function isValidRowCount(UploadedFile $file, int $rowCountLimit): bool
     {
         $uploadedOrder = $this->utilCsvService->readUploadedFile($file);
@@ -49,11 +40,6 @@ class UploadedFileCsvTypeValidator implements UploadedFileTypeValidatorInterface
         return $rowCountLimit >= count($uploadedOrder);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return bool
-     */
     public function validateFormat(UploadedFile $file): bool
     {
         $uploadedOrder = $this->utilCsvService->readUploadedFile($file);

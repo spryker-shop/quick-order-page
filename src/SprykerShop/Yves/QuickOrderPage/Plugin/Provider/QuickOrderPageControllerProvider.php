@@ -45,11 +45,6 @@ class QuickOrderPageControllerProvider extends AbstractYvesControllerProvider
      */
     protected const ROUTE_QUICK_ORDER_DOWNLOAD_TEMPLATE = 'quick-order/download-template';
 
-    /**
-     * @param \Silex\Application $app
-     *
-     * @return void
-     */
     protected function defineControllers(Application $app): void
     {
         $this->addQuickOrderRoute()

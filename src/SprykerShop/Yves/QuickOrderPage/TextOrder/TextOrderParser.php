@@ -23,9 +23,6 @@ class TextOrderParser implements TextOrderParserInterface
      */
     protected $config;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\QuickOrderPageConfig $config
-     */
     public function __construct(QuickOrderPageConfig $config)
     {
         $this->config = $config;
@@ -78,12 +75,6 @@ class TextOrderParser implements TextOrderParserInterface
         return $quickOrderItemTransfers;
     }
 
-    /**
-     * @param string $sku
-     * @param int $quantity
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     protected function createQuickOrderItemTransfer(string $sku, int $quantity): QuickOrderItemTransfer
     {
         $quickOrderItemTransfer = (new QuickOrderItemTransfer())

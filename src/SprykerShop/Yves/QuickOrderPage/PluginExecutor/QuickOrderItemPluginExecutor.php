@@ -26,11 +26,6 @@ class QuickOrderItemPluginExecutor implements QuickOrderItemPluginExecutorInterf
         $this->quickOrderItemFilterPlugins = $quickOrderItemFilterPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderTransfer
-     */
     public function applyQuickOrderItemFilterPluginsOnQuickOrder(QuickOrderTransfer $quickOrderTransfer): QuickOrderTransfer
     {
         $quickOrderItems = [];
@@ -42,11 +37,6 @@ class QuickOrderItemPluginExecutor implements QuickOrderItemPluginExecutorInterf
         return $quickOrderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     public function applyQuickOrderItemFilterPluginsOnQuickOrderItem(
         QuickOrderItemTransfer $quickOrderItemTransfer
     ): QuickOrderItemTransfer {

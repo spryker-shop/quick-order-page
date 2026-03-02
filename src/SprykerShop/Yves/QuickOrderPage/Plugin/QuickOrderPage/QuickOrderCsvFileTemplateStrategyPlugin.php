@@ -92,9 +92,6 @@ class QuickOrderCsvFileTemplateStrategyPlugin extends AbstractPlugin implements 
         return static::CSV_FILE_MIME_TYPE;
     }
 
-    /**
-     * @return string
-     */
     protected function getExampleTemplateHeader(): string
     {
         return static::CSV_SKU_COLUMN_NAME
@@ -103,9 +100,6 @@ class QuickOrderCsvFileTemplateStrategyPlugin extends AbstractPlugin implements 
             . PHP_EOL;
     }
 
-    /**
-     * @return string
-     */
     protected function getExampleTemplateBody(): string
     {
         return 'example_sku_1' . static::CSV_COLUMN_SEPARATOR . '1' . PHP_EOL

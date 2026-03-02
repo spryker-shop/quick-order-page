@@ -16,9 +16,6 @@ class ItemsFieldConstraint extends SymfonyConstraint
      */
     protected const MESSAGE = 'quick-order.errors.items-required';
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return static::MESSAGE;

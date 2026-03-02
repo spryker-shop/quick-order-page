@@ -17,17 +17,11 @@ class QuickOrderItemEmbeddedFormDataProvider
      */
     protected $localeClient;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToLocaleClientInterface $localeClient
-     */
     public function __construct(QuickOrderPageToLocaleClientInterface $localeClient)
     {
         $this->localeClient = $localeClient;
     }
 
-    /**
-     * @return array
-     */
     public function getOptions(): array
     {
         return [

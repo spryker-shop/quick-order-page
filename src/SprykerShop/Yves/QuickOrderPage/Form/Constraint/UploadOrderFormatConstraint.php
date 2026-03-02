@@ -52,49 +52,31 @@ class UploadOrderFormatConstraint extends SymfonyConstraint
      */
     protected $uploadedFileValidator;
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\FileValidatorInterface
-     */
     public function getUploadedFileValidator(): FileValidatorInterface
     {
         return $this->uploadedFileValidator;
     }
 
-    /**
-     * @return int
-     */
     public function getUploadRowCountLimit(): int
     {
         return $this->config->getUploadRowCountLimit();
     }
 
-    /**
-     * @return string
-     */
     public function getInvalidFormatMessage(): string
     {
         return static::ERROR_MESSAGE_INVALID_FORMAT;
     }
 
-    /**
-     * @return string
-     */
     public function getInvalidMimeTypeMessage(): string
     {
         return static::ERROR_MESSAGE_INVALID_MIME_TYPE;
     }
 
-    /**
-     * @return string
-     */
     public function getNoFileMessage(): string
     {
         return static::ERROR_MESSAGE_NO_FILE;
     }
 
-    /**
-     * @return string
-     */
     public function getInvalidAmountOfRowsMessage(): string
     {
         return static::ERROR_MESSAGE_INVALID_AMOUNT_OF_ROWS;

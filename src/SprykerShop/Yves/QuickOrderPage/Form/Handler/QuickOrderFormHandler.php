@@ -72,11 +72,6 @@ class QuickOrderFormHandler implements QuickOrderFormHandlerInterface
         $this->itemExpanderPlugins = $itemExpanderPlugins;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     public function addToCart(QuickOrderTransfer $quickOrderTransfer): bool
     {
         if (!$this->hasItems($quickOrderTransfer) || !$this->isValid($quickOrderTransfer)) {
@@ -86,11 +81,6 @@ class QuickOrderFormHandler implements QuickOrderFormHandlerInterface
         return $this->addItemsToCart($quickOrderTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     public function addToEmptyCart(QuickOrderTransfer $quickOrderTransfer): bool
     {
         if (!$this->hasItems($quickOrderTransfer) || !$this->isValid($quickOrderTransfer)) {
@@ -102,29 +92,16 @@ class QuickOrderFormHandler implements QuickOrderFormHandlerInterface
         return $this->addItemsToCart($quickOrderTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     protected function hasItems(QuickOrderTransfer $quickOrderTransfer): bool
     {
         return (bool)$quickOrderTransfer->getItems()->count();
     }
 
-    /**
-     * @return void
-     */
     protected function clearQuote(): void
     {
         $this->quoteClient->setQuote(new QuoteTransfer());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     protected function isValid(QuickOrderTransfer $quickOrderTransfer): bool
     {
         foreach ($quickOrderTransfer->getItems() as $quickOrderItemTransfer) {
@@ -136,11 +113,6 @@ class QuickOrderFormHandler implements QuickOrderFormHandlerInterface
         return true;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     protected function addItemsToCart(QuickOrderTransfer $quickOrderTransfer): bool
     {
         $itemTransfers = $this->mapToItemTransfers($quickOrderTransfer);
@@ -179,11 +151,6 @@ class QuickOrderFormHandler implements QuickOrderFormHandlerInterface
         return $itemTransfers;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     protected function expandItemTransfer(ItemTransfer $itemTransfer): ItemTransfer
     {
         $itemTransfer = $this->productResolver->expandItemTransferWithProductIds($itemTransfer);

@@ -27,19 +27,12 @@ class QuickOrderFormDataProvider implements QuickOrderFormDataProviderInterface
      */
     protected $localeClient;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\QuickOrderPageConfig $config
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToLocaleClientInterface $localeClient
-     */
     public function __construct(QuickOrderPageConfig $config, QuickOrderPageToLocaleClientInterface $localeClient)
     {
         $this->config = $config;
         $this->localeClient = $localeClient;
     }
 
-    /**
-     * @return array
-     */
     public function getOptions(): array
     {
         return [
@@ -66,11 +59,6 @@ class QuickOrderFormDataProvider implements QuickOrderFormDataProviderInterface
         return $quickOrderTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrder
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderTransfer
-     */
     public function appendEmptyQuickOrderItems(QuickOrderTransfer $quickOrder): QuickOrderTransfer
     {
         $itemsNumber = $this->config->getDefaultDisplayedRowCount();

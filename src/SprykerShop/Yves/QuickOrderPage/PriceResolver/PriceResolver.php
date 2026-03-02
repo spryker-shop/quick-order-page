@@ -31,21 +31,12 @@ class PriceResolver implements PriceResolverInterface
      */
     protected $priceProductStorageClient;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\ProductResolver\ProductResolverInterface $productResolver
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToPriceProductStorageClientInterface $priceProductStorageClient
-     */
     public function __construct(ProductResolverInterface $productResolver, QuickOrderPageToPriceProductStorageClientInterface $priceProductStorageClient)
     {
         $this->productResolver = $productResolver;
         $this->priceProductStorageClient = $priceProductStorageClient;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderTransfer
-     */
     public function setSumPriceForQuickOrderTransfer(QuickOrderTransfer $quickOrderTransfer): QuickOrderTransfer
     {
         if (!$this->can('SeePricePermissionPlugin')) {
@@ -60,11 +51,6 @@ class PriceResolver implements PriceResolverInterface
         return $quickOrderTransfer->setItems(new ArrayObject($items));
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     public function setSumPriceForQuickOrderItemTransfer(QuickOrderItemTransfer $quickOrderItemTransfer): QuickOrderItemTransfer
     {
         if (!$this->can('SeePricePermissionPlugin') || !$quickOrderItemTransfer->getProductConcrete() || !$quickOrderItemTransfer->getQuantity()) {
@@ -92,13 +78,6 @@ class PriceResolver implements PriceResolverInterface
         return $quickOrderItemTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     * @param int $idProduct
-     * @param int $idProductAbstract
-     *
-     * @return \Generated\Shared\Transfer\CurrentProductPriceTransfer
-     */
     protected function getCurrentProductPriceTransfer(
         QuickOrderItemTransfer $quickOrderItemTransfer,
         int $idProduct,

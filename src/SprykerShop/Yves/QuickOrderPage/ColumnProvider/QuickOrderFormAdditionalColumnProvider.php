@@ -22,9 +22,6 @@ class QuickOrderFormAdditionalColumnProvider implements QuickOrderFormAdditional
         $this->quickOrderFormColumnPlugins = $quickOrderFormColumnPlugins;
     }
 
-    /**
-     * @return array
-     */
     public function getAdditionalColumns(): array
     {
         $additionalColumns = [];

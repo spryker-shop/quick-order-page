@@ -22,12 +22,6 @@ class QuickOrderPageToProductQuantityStorageClientBridge implements QuickOrderPa
         $this->productQuantityStorageClient = $productQuantityStorageClient;
     }
 
-    /**
-     * @param int $idProduct
-     * @param int $quantity
-     *
-     * @return int
-     */
     public function getNearestQuantity(int $idProduct, int $quantity): int
     {
         return $this->productQuantityStorageClient->getNearestQuantity($idProduct, $quantity);

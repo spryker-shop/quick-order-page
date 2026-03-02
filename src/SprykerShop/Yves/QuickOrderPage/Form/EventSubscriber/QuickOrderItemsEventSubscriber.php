@@ -30,11 +30,6 @@ class QuickOrderItemsEventSubscriber implements EventSubscriberInterface
         ];
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormEvent $event
-     *
-     * @return void
-     */
     public function onPreSubmit(FormEvent $event): void
     {
         $items = $event->getData();
@@ -48,11 +43,6 @@ class QuickOrderItemsEventSubscriber implements EventSubscriberInterface
         $event->setData($items);
     }
 
-    /**
-     * @param array $quickOrderItems
-     *
-     * @return array
-     */
     protected function removeEmptyQuickOrderItems(array $quickOrderItems): array
     {
         return array_filter(

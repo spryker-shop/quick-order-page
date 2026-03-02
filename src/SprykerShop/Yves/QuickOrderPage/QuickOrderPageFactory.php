@@ -65,17 +65,11 @@ use Symfony\Component\Validator\Constraints\NotBlank;
  */
 class QuickOrderPageFactory extends AbstractFactory
 {
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\FormFactory
-     */
     public function createQuickOrderFormFactory(): FormFactory
     {
         return new FormFactory();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\Handler\QuickOrderFormHandlerInterface
-     */
     public function createFormOperationHandler(): QuickOrderFormHandlerInterface
     {
         return new QuickOrderFormHandler(
@@ -88,9 +82,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Renderer\FileRendererInterface
-     */
     public function createFileDownloadRenderer(): FileRendererInterface
     {
         return new FileDownloadRenderer(
@@ -98,9 +89,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\DataProvider\QuickOrderFormDataProviderInterface
-     */
     public function createQuickOrderFormDataProvider(): QuickOrderFormDataProviderInterface
     {
         return new QuickOrderFormDataProvider(
@@ -109,17 +97,11 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\TextOrder\TextOrderParserInterface
-     */
     public function createTextOrderParser(): TextOrderParserInterface
     {
         return new TextOrderParser($this->getConfig());
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\FileParserInterface
-     */
     public function createUploadedFileParser(): FileParserInterface
     {
         return new UploadedFileParser(
@@ -127,9 +109,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\FileValidatorInterface
-     */
     public function createUploadedFileValidator(): FileValidatorInterface
     {
         return new UploadedFileValidator(
@@ -137,17 +116,11 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\UploadedFile\UploadedFileTypeValidatorInterface
-     */
     public function createUploadedFileCsvTypeValidator(): UploadedFileTypeValidatorInterface
     {
         return new UploadedFileCsvTypeValidator($this->getUtilCsvService());
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\UploadedFile\UploadedFileTypeParserInterface
-     */
     public function createUploadedFileCsvTypeParser(): UploadedFileTypeParserInterface
     {
         return new UploadedFileCsvTypeParser(
@@ -156,9 +129,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Mapper\QuickOrderItemMapperInterface
-     */
     public function createQuickOrderItemMapper(): QuickOrderItemMapperInterface
     {
         return new QuickOrderItemMapper(
@@ -166,33 +136,21 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\Parser\UploadedFile\UploadedFileCsvTypeSanitizerInterface
-     */
     public function createUploadedFileCsvTypeSanitizer(): UploadedFileCsvTypeSanitizerInterface
     {
         return new UploadedFileCsvTypeSanitizer();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToCartClientInterface
-     */
     public function getCartClient(): QuickOrderPageToCartClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_CART);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToZedRequestClientInterface
-     */
     public function getZedRequestClient(): QuickOrderPageToZedRequestClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_ZED_REQUEST);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToQuickOrderClientInterface
-     */
     public function getQuickOrderClient(): QuickOrderPageToQuickOrderClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_QUICK_ORDER);
@@ -208,25 +166,16 @@ class QuickOrderPageFactory extends AbstractFactory
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGIN_APPLICATION);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToQuoteClientInterface
-     */
     public function getQuoteClient(): QuickOrderPageToQuoteClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_QUOTE);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\Request
-     */
     public function getRequest(): Request
     {
         return $this->getRequestStack()->getCurrentRequest();
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\RequestStack
-     */
     public function getRequestStack(): RequestStack
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::SERVICE_REQUEST_STACK);
@@ -251,17 +200,11 @@ class QuickOrderPageFactory extends AbstractFactory
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGINS_QUICK_ORDER_ITEM_TRANSFER_EXPANDER);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToProductStorageClientInterface
-     */
     public function getProductStorageClient(): QuickOrderPageToProductStorageClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_PRODUCT_STORAGE);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToPriceProductStorageClientInterface
-     */
     public function getPriceProductStorageClient(): QuickOrderPageToPriceProductStorageClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_PRICE_PRODUCT_STORAGE);
@@ -315,17 +258,11 @@ class QuickOrderPageFactory extends AbstractFactory
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGINS_QUICK_ORDER_FILE_TEMPLATE);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToProductQuantityStorageClientInterface
-     */
     public function getProductQuantityStorageClient(): QuickOrderPageToProductQuantityStorageClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_PRODUCT_QUANTITY_STORAGE);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Service\QuickOrderPageToUtilCsvServiceInterface
-     */
     public function getUtilCsvService(): QuickOrderPageToUtilCsvServiceInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::SERVICE_UTIL_CSV);
@@ -339,17 +276,11 @@ class QuickOrderPageFactory extends AbstractFactory
         return new QuantityFieldConstraint();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\Constraint\ItemsFieldConstraint
-     */
     public function createItemsFieldConstraint(): ItemsFieldConstraint
     {
         return new ItemsFieldConstraint();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\Constraint\TextOrderFormatConstraint
-     */
     public function createTextOrderCorrectConstraint(): TextOrderFormatConstraint
     {
         return new TextOrderFormatConstraint(
@@ -359,9 +290,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\Constraint\UploadOrderFormatConstraint
-     */
     public function createUploadOrderCorrectConstraint(): UploadOrderFormatConstraint
     {
         return new UploadOrderFormatConstraint(
@@ -372,17 +300,11 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraints\NotBlank
-     */
     public function createNotBlankConstraint(): NotBlank
     {
         return new NotBlank();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\PluginExecutor\QuickOrderItemPluginExecutor
-     */
     public function createQuickOrderItemPluginExecutor(): QuickOrderItemPluginExecutor
     {
         return new QuickOrderItemPluginExecutor(
@@ -390,9 +312,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\ProductResolver\ProductResolverInterface
-     */
     public function createProductResolver(): ProductResolverInterface
     {
         return new ProductResolver(
@@ -400,9 +319,6 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\PriceResolver\PriceResolverInterface
-     */
     public function createPriceResolver(): PriceResolverInterface
     {
         return new PriceResolver(
@@ -411,57 +327,36 @@ class QuickOrderPageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\ViewDataTransformer\ViewDataTransformerInterface
-     */
     public function createViewDataTransformer(): ViewDataTransformerInterface
     {
         return new ViewDataTransformer();
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\File\ExtensionReader\FileTemplateExtensionReaderInterface
-     */
     public function createFileTemplateExtensionsReader(): FileTemplateExtensionReaderInterface
     {
         return new FileTemplateExtensionReader($this->getQuickOrderFileTemplatePlugins());
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\ColumnProvider\QuickOrderFormAdditionalColumnProviderInterface
-     */
     public function createAdditionalColumnsProvider(): QuickOrderFormAdditionalColumnProviderInterface
     {
         return new QuickOrderFormAdditionalColumnProvider($this->getQuickOrderFormColumnPlugins());
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\QuickOrderPageConfig
-     */
     public function getModuleConfig(): QuickOrderPageConfig
     {
         return $this->getConfig();
     }
 
-    /**
-     * @return \Symfony\Component\Security\Csrf\CsrfTokenManagerInterface
-     */
     public function getCsrfTokenManager(): CsrfTokenManagerInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::SERVICE_FORM_CSRF_PROVIDER);
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Form\DataProvider\QuickOrderItemEmbeddedFormDataProvider
-     */
     public function createQuickOrderItemEmbeddedFormDataProvider(): QuickOrderItemEmbeddedFormDataProvider
     {
         return new QuickOrderItemEmbeddedFormDataProvider($this->getLocaleClient());
     }
 
-    /**
-     * @return \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToLocaleClientInterface
-     */
     public function getLocaleClient(): QuickOrderPageToLocaleClientInterface
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::CLIENT_LOCALE);

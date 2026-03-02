@@ -30,11 +30,6 @@ class FileDownloadRenderer implements FileRendererInterface
         $this->quickOrderFileTemplatePlugins = $quickOrderFileTemplatePlugins;
     }
 
-    /**
-     * @param string $fileType
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function render(string $fileType): Response
     {
         foreach ($this->quickOrderFileTemplatePlugins as $fileTemplatePlugin) {

@@ -9,8 +9,5 @@ namespace SprykerShop\Yves\QuickOrderPage\Dependency\Client;
 
 interface QuickOrderPageToLocaleClientInterface
 {
-    /**
-     * @return string
-     */
     public function getCurrentLocale(): string;
 }

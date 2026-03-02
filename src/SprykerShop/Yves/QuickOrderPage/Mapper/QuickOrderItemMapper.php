@@ -25,12 +25,6 @@ class QuickOrderItemMapper implements QuickOrderItemMapperInterface
         $this->quickOrderItemMapperPlugins = $quickOrderItemMapperPlugins;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     public function mapRequestToQuickOrderItemTransfer(
         Request $request,
         QuickOrderItemTransfer $quickOrderItemTransfer

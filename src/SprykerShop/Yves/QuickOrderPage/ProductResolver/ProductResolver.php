@@ -44,19 +44,11 @@ class ProductResolver implements ProductResolverInterface
      */
     protected $productStorageClient;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToProductStorageClientInterface $productStorageClient
-     */
     public function __construct(QuickOrderPageToProductStorageClientInterface $productStorageClient)
     {
         $this->productStorageClient = $productStorageClient;
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return int|null
-     */
     public function getIdProductBySku(string $sku): ?int
     {
         $productConcreteData = $this->productStorageClient
@@ -65,11 +57,6 @@ class ProductResolver implements ProductResolverInterface
         return $productConcreteData[static::ID_PRODUCT_CONCRETE] ?? null;
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer
-     */
     public function getProductBySku(string $sku): ProductConcreteTransfer
     {
         $productConcreteData = $this->productStorageClient
@@ -79,11 +66,6 @@ class ProductResolver implements ProductResolverInterface
             ->fromArray($productConcreteData, true);
     }
 
-    /**
-     * @param int $idProduct
-     *
-     * @return int
-     */
     public function getIdProductAbstractByIdProduct(int $idProduct): int
     {
         $productConcreteStorageTransfers = $this->productStorageClient
@@ -92,11 +74,6 @@ class ProductResolver implements ProductResolverInterface
         return $productConcreteStorageTransfers[0]->getIdProductAbstract();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\ItemTransfer
-     */
     public function expandItemTransferWithProductIds(ItemTransfer $itemTransfer): ItemTransfer
     {
         $productConcreteTransfer = $this->findProductConcreteBySku($itemTransfer->getSku());
@@ -109,11 +86,6 @@ class ProductResolver implements ProductResolverInterface
             ->setIdProductAbstract($productConcreteTransfer->getFkProductAbstract());
     }
 
-    /**
-     * @param string $sku
-     *
-     * @return \Generated\Shared\Transfer\ProductConcreteTransfer|null
-     */
     protected function findProductConcreteBySku(string $sku): ?ProductConcreteTransfer
     {
         $productConcreteStorageData = $this->productStorageClient

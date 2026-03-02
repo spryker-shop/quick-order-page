@@ -46,9 +46,6 @@ class QuickOrderPageToZedRequestClientBridge implements QuickOrderPageToZedReque
         return $this->zedRequestClient->getResponsesErrorMessages();
     }
 
-    /**
-     * @return void
-     */
     public function addResponseMessagesToMessenger(): void
     {
         $this->zedRequestClient->addResponseMessagesToMessenger();

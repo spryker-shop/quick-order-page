@@ -14,9 +14,6 @@ use Symfony\Component\Form\FormInterface;
 
 class FormFactory extends AbstractFactory
 {
-    /**
-     * @return \Symfony\Component\Form\FormFactoryInterface
-     */
     public function getFormFactory(): FormFactoryInterface
     {
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY);

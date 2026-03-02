@@ -46,10 +46,6 @@ class UploadedFileCsvTypeParser implements UploadedFileTypeParserInterface
      */
     protected $uploadedFileCsvTypeSanitizer;
 
-    /**
-     * @param \SprykerShop\Yves\QuickOrderPage\Dependency\Service\QuickOrderPageToUtilCsvServiceInterface $utilCsvService
-     * @param \SprykerShop\Yves\QuickOrderPage\File\Parser\UploadedFile\UploadedFileCsvTypeSanitizerInterface $uploadedFileCsvTypeSanitizer
-     */
     public function __construct(
         QuickOrderPageToUtilCsvServiceInterface $utilCsvService,
         UploadedFileCsvTypeSanitizerInterface $uploadedFileCsvTypeSanitizer
@@ -100,11 +96,6 @@ class UploadedFileCsvTypeParser implements UploadedFileTypeParserInterface
         return $quickOrderItemTransfers;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $uploadedOrder
-     *
-     * @return array
-     */
     protected function getUploadOrderRows(UploadedFile $uploadedOrder): array
     {
         return $this->utilCsvService->readUploadedFile($uploadedOrder);

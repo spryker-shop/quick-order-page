@@ -36,9 +36,6 @@ class ViewDataTransformerTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testTransformProductData(): void
     {
         // Arrange

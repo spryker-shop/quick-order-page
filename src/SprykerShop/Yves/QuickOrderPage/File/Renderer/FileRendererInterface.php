@@ -11,10 +11,5 @@ use Symfony\Component\HttpFoundation\Response;
 
 interface FileRendererInterface
 {
-    /**
-     * @param string $fileType
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function render(string $fileType): Response;
 }

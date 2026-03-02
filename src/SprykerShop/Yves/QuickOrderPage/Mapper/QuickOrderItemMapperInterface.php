@@ -12,12 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface QuickOrderItemMapperInterface
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param \Generated\Shared\Transfer\QuickOrderItemTransfer $quickOrderItemTransfer
-     *
-     * @return \Generated\Shared\Transfer\QuickOrderItemTransfer
-     */
     public function mapRequestToQuickOrderItemTransfer(
         Request $request,
         QuickOrderItemTransfer $quickOrderItemTransfer

@@ -53,11 +53,6 @@ class QuickOrderForm extends AbstractType
         $builder->addEventSubscriber(new QuickOrderItemsEventSubscriber());
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([

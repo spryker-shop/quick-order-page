@@ -25,11 +25,6 @@ class UploadedFileValidator implements FileValidatorInterface
         $this->quickOrderFileValidatorPlugins = $quickOrderFileValidatorPlugins;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return bool
-     */
     public function isValidMimeType(UploadedFile $file): bool
     {
         foreach ($this->quickOrderFileValidatorPlugins as $quickOrderFileValidatorPlugin) {
@@ -41,11 +36,6 @@ class UploadedFileValidator implements FileValidatorInterface
         return false;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return bool
-     */
     public function isValidFormat(UploadedFile $file): bool
     {
         foreach ($this->quickOrderFileValidatorPlugins as $quickOrderFileValidatorPlugin) {
@@ -57,12 +47,6 @@ class UploadedFileValidator implements FileValidatorInterface
         return false;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     * @param int $rowCountLimit
-     *
-     * @return bool
-     */
     public function isValidRowCount(UploadedFile $file, int $rowCountLimit): bool
     {
         foreach ($this->quickOrderFileValidatorPlugins as $quickOrderFileValidatorPlugin) {

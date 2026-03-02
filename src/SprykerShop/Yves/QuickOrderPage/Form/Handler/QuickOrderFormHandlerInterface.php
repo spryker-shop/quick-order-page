@@ -11,17 +11,7 @@ use Generated\Shared\Transfer\QuickOrderTransfer;
 
 interface QuickOrderFormHandlerInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     public function addToCart(QuickOrderTransfer $quickOrderTransfer): bool;
 
-    /**
-     * @param \Generated\Shared\Transfer\QuickOrderTransfer $quickOrderTransfer
-     *
-     * @return bool
-     */
     public function addToEmptyCart(QuickOrderTransfer $quickOrderTransfer): bool;
 }

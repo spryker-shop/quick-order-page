@@ -9,8 +9,5 @@ namespace SprykerShop\Yves\QuickOrderPage\ColumnProvider;
 
 interface QuickOrderFormAdditionalColumnProviderInterface
 {
-    /**
-     * @return array
-     */
     public function getAdditionalColumns(): array;
 }

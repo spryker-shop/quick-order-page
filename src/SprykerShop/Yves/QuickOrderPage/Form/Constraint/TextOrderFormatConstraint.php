@@ -34,17 +34,11 @@ class TextOrderFormatConstraint extends SymfonyConstraint
         return $this->config->getTextOrderSeparators();
     }
 
-    /**
-     * @return string
-     */
     public function getRowSplitterPattern(): string
     {
         return $this->config->getTextOrderRowSplitterPattern();
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return static::MESSAGE;

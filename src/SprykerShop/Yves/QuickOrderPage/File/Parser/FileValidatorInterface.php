@@ -11,25 +11,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface FileValidatorInterface
 {
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return bool
-     */
     public function isValidFormat(UploadedFile $file): bool;
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     * @param int $rowCountLimit
-     *
-     * @return bool
-     */
     public function isValidRowCount(UploadedFile $file, int $rowCountLimit): bool;
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return bool
-     */
     public function isValidMimeType(UploadedFile $file): bool;
 }

@@ -26,21 +26,11 @@ class QuickOrderPageToUtilCsvServiceBridge implements QuickOrderPageToUtilCsvSer
         $this->utilCsvService = $utilCsvService;
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\File\UploadedFile $file
-     *
-     * @return array
-     */
     public function readUploadedFile(UploadedFile $file): array
     {
         return $this->utilCsvService->readUploadedFile($file);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\CsvFileTransfer $csvFileTransfer
-     *
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     */
     public function exportFile(CsvFileTransfer $csvFileTransfer): StreamedResponse
     {
         return $this->utilCsvService->exportFile($csvFileTransfer);
