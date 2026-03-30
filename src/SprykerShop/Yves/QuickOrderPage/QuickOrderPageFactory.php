@@ -377,4 +377,12 @@ class QuickOrderPageFactory extends AbstractFactory
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGINS_QUICK_ORDER_ITEM_MAPPER);
     }
+
+    /**
+     * @return array<\SprykerShop\Yves\QuickOrderPageExtension\Dependency\Plugin\QuickOrderFormPluginInterface>
+     */
+    public function getQuickOrderFormPlugins(): array
+    {
+        return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGINS_QUICK_ORDER_FORM);
+    }
 }

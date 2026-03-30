@@ -6,6 +6,7 @@
         textOrderForm: _view.textOrderForm,
         uploadOrderForm: _view.uploadOrderForm,
     },
+    pluginForms: _view.pluginForms | default([]),
     additionalColumns: _view.additionalColumns,
     products: _view.products,
     prices: _view.prices,
@@ -23,6 +24,7 @@
             additionalColumns: data.additionalColumns,
             textOrderForm: data.forms.textOrderForm,
             uploadOrderForm: data.forms.uploadOrderForm,
+            pluginForms: data.pluginForms,
         },
     } only %}
 {% endblock %}

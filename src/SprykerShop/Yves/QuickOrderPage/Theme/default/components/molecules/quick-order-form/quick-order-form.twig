@@ -13,6 +13,7 @@
     fileTemplateExtensions: [],
     textOrderForm: required,
     uploadOrderForm: required,
+    pluginForms: [],
 } %}
 
 {% block body %}
@@ -64,6 +65,7 @@
             name: config.name,
             jsName: config.jsName,
             additionalColumns: data.additionalColumns,
+            pluginForms: data.pluginForms,
         },
     } only %}
         {% block fieldset %}
@@ -100,6 +102,20 @@
                                     fileTemplateExtensions: data.fileTemplateExtensions,
                                 },
                             } only %}
+
+                            {% for pluginForm in embed.pluginForms %}
+                                <hr>
+
+                                {% if pluginForm.vars.template_path is defined %}
+                                    {% include pluginForm.vars.template_path with {
+                                        data: {
+                                            form: pluginForm,
+                                        },
+                                    } only %}
+                                {% else %}
+                                    {{ form_widget(pluginForm) }}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 {% endblock %}

@@ -184,14 +184,18 @@ class QuickOrderController extends AbstractController
         $handledQuickOrderItems = $this->handleQuickOrderForm($request);
         $handledUploadOrderItems = $this->handleUploadOrderForm($request, $uploadOrderForm);
         $handledTextOrderItems = $this->handleTextOrderForm($request, $textOrderForm);
+        [$handledPluginItems, $pluginForms] = $this->handleQuickOrderFormPlugins($request);
 
         $quickOrderItems = array_merge(
             $handledQuickOrderItems,
             $handledUploadOrderItems,
             $handledTextOrderItems,
+            $handledPluginItems,
         );
 
-        if (!$textOrderForm->isSubmitted() && !$uploadOrderForm->isSubmitted()) {
+        $anyPluginFormSubmitted = $this->isAnyPluginFormSubmitted($pluginForms);
+
+        if (!$textOrderForm->isSubmitted() && !$uploadOrderForm->isSubmitted() && !$anyPluginFormSubmitted) {
             $response = $this->executeQuickOrderFormSubmitAction($request);
 
             if ($response) {
@@ -199,7 +203,7 @@ class QuickOrderController extends AbstractController
             }
         }
 
-        if (count($handledUploadOrderItems) || count($handledTextOrderItems)) {
+        if (count($handledUploadOrderItems) || count($handledTextOrderItems) || count($handledPluginItems)) {
             $quickOrderItems = $this->filterQuickOrderItems($quickOrderItems);
         }
 
@@ -228,11 +232,48 @@ class QuickOrderController extends AbstractController
             'quickOrderForm' => $quickOrderForm->createView(),
             'textOrderForm' => $textOrderForm->createView(),
             'uploadOrderForm' => $uploadOrderForm->createView(),
+            'pluginForms' => array_map(static fn (FormInterface $form) => $form->createView(), $pluginForms),
             'additionalColumns' => $additionalColumns,
             'products' => $this->transformProductsViewData($products),
             'fileTemplateExtensions' => $fileTemplateExtensions,
             'prices' => $prices, // @deprecated quickOrderForm already contains this data per row at sumPrice property.
         ];
+    }
+
+    /**
+     * @return array{0: array<\Generated\Shared\Transfer\QuickOrderItemTransfer>, 1: array<\Symfony\Component\Form\FormInterface>}
+     */
+    protected function handleQuickOrderFormPlugins(Request $request): array
+    {
+        $quickOrderItems = [];
+        $pluginForms = [];
+
+        foreach ($this->getFactory()->getQuickOrderFormPlugins() as $plugin) {
+            if (!$plugin->isApplicable()) {
+                continue;
+            }
+
+            $form = $plugin->createForm();
+            $pluginForms[] = $form;
+            $items = $plugin->handleForm($form, $request);
+            $quickOrderItems = array_merge($quickOrderItems, $items);
+        }
+
+        return [$quickOrderItems, $pluginForms];
+    }
+
+    /**
+     * @param array<\Symfony\Component\Form\FormInterface> $pluginForms
+     */
+    protected function isAnyPluginFormSubmitted(array $pluginForms): bool
+    {
+        foreach ($pluginForms as $pluginForm) {
+            if ($pluginForm->isSubmitted()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function getQuickOrderTransfer(QuickOrderTransfer $quickOrderTransfer): QuickOrderTransfer

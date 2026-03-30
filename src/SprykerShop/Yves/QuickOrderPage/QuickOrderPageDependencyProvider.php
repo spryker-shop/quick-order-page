@@ -119,6 +119,8 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const PLUGINS_QUICK_ORDER_ITEM_MAPPER = 'PLUGINS_QUICK_ORDER_ITEM_MAPPER';
 
+    public const string PLUGINS_QUICK_ORDER_FORM = 'PLUGINS_QUICK_ORDER_FORM';
+
     /**
      * @var string
      */
@@ -167,6 +169,7 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
         $container = $this->addLocaleClient($container);
         $container = $this->addQuickOrderFormExpanderPlugins($container);
         $container = $this->addQuickOrderItemMapperPlugins($container);
+        $container = $this->addQuickOrderFormPlugins($container);
 
         return $container;
     }
@@ -466,6 +469,23 @@ class QuickOrderPageDependencyProvider extends AbstractBundleDependencyProvider
      * @return array<\SprykerShop\Yves\QuickOrderPageExtension\Dependency\Plugin\QuickOrderItemMapperPluginInterface>
      */
     protected function getQuickOrderItemMapperPlugins(): array
+    {
+        return [];
+    }
+
+    protected function addQuickOrderFormPlugins(Container $container): Container
+    {
+        $container->set(static::PLUGINS_QUICK_ORDER_FORM, function (): array {
+            return $this->getQuickOrderFormPlugins();
+        });
+
+        return $container;
+    }
+
+    /**
+     * @return array<\SprykerShop\Yves\QuickOrderPageExtension\Dependency\Plugin\QuickOrderFormPluginInterface>
+     */
+    protected function getQuickOrderFormPlugins(): array
     {
         return [];
     }
