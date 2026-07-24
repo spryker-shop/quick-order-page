@@ -22,11 +22,21 @@ class QuickOrderFormMeasurementUnitColumnPlugin extends AbstractPlugin implement
      */
     protected const DATA_PATH = 'baseMeasurementUnit.name';
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
     public function getColumnTitle(): string
     {
         return static::COLUMN_TITLE;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @api
+     */
     public function getDataPath(): string
     {
         return static::DATA_PATH;
