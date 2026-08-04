@@ -25,7 +25,7 @@ export default class QuickOrderRow extends Component {
     protected additionalFormElements: HTMLSelectElement[] | HTMLInputElement[];
     protected extraQueryParams: Map<string, string>;
 
-    protected readyCallback(): void {
+    protected init(): void {
         this.ajaxProvider = <AjaxProvider>this.getElementsByClassName(`${this.jsName}__provider`)[0];
         this.autocompleteInput = <AutocompleteForm>this.getElementsByTagName('autocomplete-form')[0];
 

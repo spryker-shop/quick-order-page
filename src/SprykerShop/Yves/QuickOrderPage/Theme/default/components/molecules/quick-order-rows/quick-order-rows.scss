@@ -1,6 +1,12 @@
+@use 'sass:meta';
+
 @mixin quick-order-page-quick-order-rows($name: '.quick-order-rows') {
     #{$name} {
         width: 100%;
+
+        @if meta.mixin-exists(quick-order-page-quick-order-rows-base-hook) {
+            @include quick-order-page-quick-order-rows-base-hook;
+        }
 
         &__row {
             &:not(:last-child) {

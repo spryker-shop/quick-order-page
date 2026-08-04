@@ -1,7 +1,13 @@
+@use 'sass:meta';
+
 @mixin quick-order-page-quick-order-form($name: '.quick-order-form') {
     #{$name} {
         position: relative;
         z-index: $setting-zi-element-floating;
+
+        @if meta.mixin-exists(quick-order-page-quick-order-form-base-hook) {
+            @include quick-order-page-quick-order-form-base-hook;
+        }
 
         &__rows {
             width: 100%;
