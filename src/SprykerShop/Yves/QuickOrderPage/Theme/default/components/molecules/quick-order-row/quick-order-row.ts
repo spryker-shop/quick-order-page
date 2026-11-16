@@ -3,7 +3,7 @@ import AutocompleteForm, {
     Events as AutocompleteEvents,
 } from 'ShopUi/components/molecules/autocomplete-form/autocomplete-form';
 import AjaxProvider from 'ShopUi/components/molecules/ajax-provider/ajax-provider';
-import debounce from 'lodash-es/debounce';
+import { debounce } from 'ShopUi/utils/timing/debounce';
 
 export default class QuickOrderRow extends Component {
     /**
