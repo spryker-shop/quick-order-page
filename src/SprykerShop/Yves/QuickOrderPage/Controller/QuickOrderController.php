@@ -25,6 +25,7 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 
 /**
  * @method \SprykerShop\Yves\QuickOrderPage\QuickOrderPageFactory getFactory()
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class QuickOrderController extends AbstractController
 {
