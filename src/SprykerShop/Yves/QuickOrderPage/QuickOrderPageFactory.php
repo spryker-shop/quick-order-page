@@ -20,6 +20,8 @@ use SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToQuickOrder
 use SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToQuoteClientInterface;
 use SprykerShop\Yves\QuickOrderPage\Dependency\Client\QuickOrderPageToZedRequestClientInterface;
 use SprykerShop\Yves\QuickOrderPage\Dependency\Service\QuickOrderPageToUtilCsvServiceInterface;
+use SprykerShop\Yves\QuickOrderPage\Expander\ProductConcreteProductAbstractExpander;
+use SprykerShop\Yves\QuickOrderPage\Expander\ProductConcreteProductAbstractExpanderInterface;
 use SprykerShop\Yves\QuickOrderPage\File\ExtensionReader\FileTemplateExtensionReader;
 use SprykerShop\Yves\QuickOrderPage\File\ExtensionReader\FileTemplateExtensionReaderInterface;
 use SprykerShop\Yves\QuickOrderPage\File\Parser\FileParserInterface;
@@ -384,5 +386,10 @@ class QuickOrderPageFactory extends AbstractFactory
     public function getQuickOrderFormPlugins(): array
     {
         return $this->getProvidedDependency(QuickOrderPageDependencyProvider::PLUGINS_QUICK_ORDER_FORM);
+    }
+
+    public function createProductConcreteProductAbstractExpander(): ProductConcreteProductAbstractExpanderInterface
+    {
+        return new ProductConcreteProductAbstractExpander($this->getProductStorageClient());
     }
 }

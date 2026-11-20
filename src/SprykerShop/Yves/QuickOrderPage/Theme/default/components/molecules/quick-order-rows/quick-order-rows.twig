@@ -76,6 +76,10 @@
     {% endblock %}
 
     {% block rows %}
+        {# The rows' products carry no category path: the traceable events add it to the rows' tracking details from one read for all rows.
+           Passed as search results, by abstract product, as the widget reads no concrete product transfer. #}
+        {% set trackedProducts = [] %}
+
         {% for row in data.rows %}
             {% set product = data.products[row.sku.vars.value] ?? null %}
             {% set price = row.vars.value.sumPrice ?: (product is null ? null : data.prices[product.sku] | default()) %}
@@ -102,6 +106,19 @@
                     },
                 } only %}
             {% endblock %}
+
+            {% if product %}
+                {% set trackedProducts = trackedProducts | merge([{
+                    id_product_abstract: product.fkProductAbstract,
+                    abstract_sku: product.abstractSku,
+                }]) %}
+            {% endif %}
         {% endfor %}
+
+        {% block productTrackingDetails %}
+            {% if trackedProducts %}
+                {% widget 'ProductTrackingDetailsWidget' args [trackedProducts] only %}{% endwidget %}
+            {% endif %}
+        {% endblock %}
     {% endblock %}
 {% endblock %}

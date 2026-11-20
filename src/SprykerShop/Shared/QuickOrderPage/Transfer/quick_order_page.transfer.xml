@@ -13,6 +13,17 @@
         <property name="messages" type="Message[]" singular="message"/>
     </transfer>
 
+    <transfer name="ProductView">
+        <property name="idProductAbstract" type="int"/>
+        <property name="idProductConcrete" type="int"/>
+        <property name="attributes" type="array" singular="attributes"/>
+        <property name="abstractSku" type="string"/>
+        <property name="abstractName" type="string" description="The name of the abstract product."/>
+        <property name="brand" type="string" description="Brand of the product, the value of its brand attribute; null when it has none."/>
+        <property name="selectedVariantAttributes" type="array" singular="selectedVariantAttribute" description="The super attributes of the concrete product the view shows, attribute key to value, ordered by attribute key as strings, e.g. {&quot;color&quot;: &quot;Red&quot;, &quot;storage_capacity&quot;: &quot;64 GB&quot;}; empty without a concrete product."/>
+        <property name="categoryPath" type="string[]" singular="categoryName" description="The category names of the product, top level first, without the root category."/>
+    </transfer>
+
     <transfer name="ProductConcrete">
         <property name="fkProductAbstract" type="int"/>
         <property name="sku" type="string"/>
@@ -20,6 +31,12 @@
         <property name="localizedAttributes" type="LocalizedAttributes[]" singular="localizedAttributes"/>
         <property name="defaultPrice" type="string"/>
         <property name="prices" type="PriceProduct[]" singular="price"/>
+        <property name="attributes" type="array" singular="attribute"/>
+        <property name="abstractSku" type="string"/>
+        <property name="abstractName" type="string" description="The name of the abstract product in the current locale."/>
+        <property name="brand" type="string" description="Brand of the product, the value of its brand attribute; null when it has none."/>
+        <property name="selectedVariantAttributes" type="array" singular="selectedVariantAttribute" description="The super attributes of the concrete product the view shows, attribute key to value, ordered by attribute key as strings, e.g. {&quot;color&quot;: &quot;Red&quot;, &quot;storage_capacity&quot;: &quot;64 GB&quot;}; empty without a concrete product."/>
+        <property name="categoryPath" type="string[]" singular="categoryName" description="The category names of the product, top level first, without the root category."/>
     </transfer>
 
     <transfer name="PriceProduct">

@@ -16,6 +16,27 @@
     customFieldNamePattern: null,
 } %}
 
+{# The row's product as the traceable events report it: the price in cents, without the quantity, which is read live from the row's input.
+   It is kept on the columns wrapper, not on the component element: the async row view renders the body only. #}
+{% set trackingDetails = null %}
+{% set isUserActionTrackingEnabled = findWidget('TraceableEventWidget').parameters.isUserActionTrackingEnabled ?? false %}
+{% if data.product and isUserActionTrackingEnabled %}
+    {% set trackingCategories = [] %}
+    {% for categoryName in data.product.categoryPath | default([]) %}
+        {% set trackingCategories = trackingCategories | merge([{ name: categoryName }]) %}
+    {% endfor %}
+    {% set trackingDetails %}{% include model('tracking-details') ignore missing with { product: {
+        sku: data.product.sku,
+        abstractSku: data.product.abstractSku | default(null),
+        name: data.product.localizedAttributes[0].name ?? null,
+        abstractName: data.product.abstractName | default(null),
+        brand: data.product.brand | default(null),
+        variant: data.product.selectedVariantAttributes | default([]) | reduce((values, value) => values | merge([value]), []),
+        categories: trackingCategories,
+        price: data.product.defaultPrice is empty ? null : data.product.defaultPrice * 1,
+    } } only %}{% endset %}
+{% endif %}
+
 {% block body %}
     {% set product = data.product %}
     {% set additionalColumns = data.additionalColumns %}
@@ -24,7 +45,7 @@
     {% set priceColumnClass = additionalColumns ? 'col--sm-4' : 'col--sm-5' %}
 
     {% block columns %}
-        <div class="grid grid--justify">
+        <div class="grid grid--justify"{% if trackingDetails %} tracking-details="{{ trackingDetails }}"{% endif %}>
             {% block additionalColumns %}
                 {% if additionalColumns and additionalColumns | length == 1 %}
                     <div class="col col--sm-3 spacing spacing--inner">

@@ -26,4 +26,14 @@
             {{ block('body') }}
         {% endblock %}
     {% endembed %}
+
+    {# The row's product carries no category path: the traceable events add it to the row's tracking details from here. #}
+    {% block productTrackingDetails %}
+        {% if data.product %}
+            {% widget 'ProductTrackingDetailsWidget' args [[{
+                id_product_abstract: data.product.fkProductAbstract,
+                abstract_sku: data.product.abstractSku,
+            }]] only %}{% endwidget %}
+        {% endif %}
+    {% endblock %}
 {% endblock %}

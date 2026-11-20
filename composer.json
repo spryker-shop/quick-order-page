@@ -14,7 +14,7 @@
         "spryker/locale": "^3.0.0 || ^4.0.0",
         "spryker/price-product-storage": "^2.9.0 || ^4.12.0",
         "spryker/product-quantity-storage": "^1.2.0 || ^3.0.0",
-        "spryker/product-storage": "^1.7.0",
+        "spryker/product-storage": "^1.59.0",
         "spryker/quick-order": "^1.1.0 || ^3.0.0",
         "spryker/quote": "^1.0.0 || ^2.0.0",
         "spryker/symfony": "^3.1.0",
@@ -35,7 +35,8 @@
         "spryker-shop/checkout-page": "Widget plugins are available for this module.",
         "spryker-shop/merchant-search-widget": "If you want to render a Merchants filter.",
         "spryker/router": "If you want to use RouteProviderPlugins to be added to the Route Module.",
-        "spryker/silex": "If you want to use ServiceProvider."
+        "spryker/silex": "If you want to use ServiceProvider.",
+        "spryker-shop/traceable-event-widget": "If you want the products to carry their tracking details (ProductTrackingDetailsWidget) for the traceable events."
     },
     "autoload": {
         "psr-4": {

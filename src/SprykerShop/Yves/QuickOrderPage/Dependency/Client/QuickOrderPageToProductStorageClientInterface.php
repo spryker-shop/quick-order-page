@@ -23,4 +23,12 @@ interface QuickOrderPageToProductStorageClientInterface
      * @return array<\Generated\Shared\Transfer\ProductConcreteStorageTransfer>
      */
     public function getProductConcreteStorageTransfers(array $productIds): array;
+
+    /**
+     * @param array<\Generated\Shared\Transfer\ProductViewTransfer> $productViewTransfers
+     * @param string $localeName
+     *
+     * @return array<\Generated\Shared\Transfer\ProductViewTransfer>
+     */
+    public function expandProductViewTransfersWithProductAbstract(array $productViewTransfers, string $localeName): array;
 }

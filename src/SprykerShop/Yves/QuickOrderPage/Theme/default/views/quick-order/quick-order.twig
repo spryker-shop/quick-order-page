@@ -30,6 +30,7 @@
 {% endblock %}
 
 {% block eventTracker %}
+    {# Every row's product from its tracking details, with the quantity as the customer entered it. #}
     {% set productsConfig = {
         multi: true,
         selector: '.quick-order-row',
@@ -38,13 +39,25 @@
                 selector: 'input[data-name="value"]',
                 attribute: 'value',
             },
+            details: {
+                selector: '[tracking-details]',
+                attribute: 'tracking-details',
+                flatten: true,
+            },
             quantity: {
                 selector: '.js-formatted-number-input__hidden-input',
                 attribute: 'value',
             },
-            price: {
-                selector: '[itemprop="itemPrice"]',
-                attribute: 'content',
+        },
+    } %}
+    {# The triggers are the clicked buttons themselves, not focused ones: Safari and Firefox on macOS do not focus a button on click. #}
+    {% set quickOrderPageData = {
+        quickOrderPage: {
+            selector: 'body',
+            closest: true,
+            flatten: true,
+            composed: {
+                products: productsConfig,
             },
         },
     } %}
@@ -55,10 +68,8 @@
                 name: 'click',
                 triggers: [
                     {
-                        selector: 'body:has([name="addToShoppingList"]:focus)',
-                        data: {
-                            products: productsConfig,
-                        },
+                        selector: '[name="addToShoppingList"]',
+                        data: quickOrderPageData,
                     },
                 ],
             },
@@ -67,16 +78,12 @@
                 name: 'click',
                 triggers: [
                     {
-                        selector: 'body:has([name="addToCart"]:focus)',
-                        data: {
-                            products: productsConfig,
-                        },
+                        selector: '[name="addToCart"]',
+                        data: quickOrderPageData,
                     },
                     {
-                        selector: 'body:has([name="createOrder"]:focus)',
-                        data: {
-                            products: productsConfig,
-                        },
+                        selector: '[name="createOrder"]',
+                        data: quickOrderPageData,
                     },
                 ],
             }

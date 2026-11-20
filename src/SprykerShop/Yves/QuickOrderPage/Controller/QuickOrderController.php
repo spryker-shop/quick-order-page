@@ -757,6 +757,10 @@ class QuickOrderController extends AbstractController
      */
     protected function transformProductsViewData(array $productConcreteTransfers): array
     {
+        $productConcreteTransfers = $this->getFactory()
+            ->createProductConcreteProductAbstractExpander()
+            ->expandProductConcreteTransfersWithProductAbstract($productConcreteTransfers, $this->getLocale());
+
         return $this->getFactory()
             ->createViewDataTransformer()
             ->transformProductData($productConcreteTransfers, $this->getFactory()->getQuickOrderFormColumnPlugins());
